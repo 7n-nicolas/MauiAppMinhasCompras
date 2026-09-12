@@ -14,10 +14,14 @@
         <Entry x:Name="txt_descricao" Text="{Binding Descricao}" />
 
         <Label Text="Quantidade:" />
-        <Entry x:Name="txt_quantidade" Text="{Binding Quantidade}" Keyboard="Numeric" />
+        <Entry x:Name="txt_quantidade" Keyboard="Text" />
 
         <Label Text="Preço Unitário:" />
-        <Entry x:Name="txt_preco" Text="{Binding Preco}" Keyboard="Numeric" />
+        <!-- Usar Keyboard="Text" para permitir inserir vírgula ou ponto em todas as plataformas -->
+        <Entry x:Name="txt_preco" Keyboard="Text" TextChanged="txt_preco_TextChanged" />
+
+        <Label Text="Categoria:" />
+        <Picker x:Name="picker_categoria" />
 
     </VerticalStackLayout>
 </ContentPage>

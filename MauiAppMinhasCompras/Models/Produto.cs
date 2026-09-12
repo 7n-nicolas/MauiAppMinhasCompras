@@ -3,6 +3,14 @@ using SQLite;
 
 namespace MauiAppMinhasCompras.Models
 {
+    public enum CategoriaProduto
+    {
+        Alimentos,
+        Higiene,
+        Limpeza,
+        Outros
+    }
+
     public class Produto
     {
         string _descricao;
@@ -49,5 +57,8 @@ namespace MauiAppMinhasCompras.Models
         }
 
         public double Total { get => Quantidade * Preco; }
+
+        // Categoria para organizar os itens (ex: Alimentos, Higiene, Limpeza)
+        public CategoriaProduto Categoria { get; set; } = CategoriaProduto.Outros;
     }
 }

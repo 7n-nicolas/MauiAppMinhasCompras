@@ -16,13 +16,10 @@ namespace MauiAppMinhasCompras.Helpers
         {
             return _conn.InsertAsync(p);        
         }
-        public Task<List<Produto>> Update(Produto p) 
+        public Task<int> Update(Produto p)
         {
-            string sql = "UPDATE Produto SET Descricao = ?, Quantidade = ?, Preco = ? WHERE Id = ?";
-
-            return _conn.QueryAsync<Produto>(
-                sql, p.Descricao, p.Quantidade, p.Preco, p.Id
-                );
+            // Usa API do SQLite-net para atualizar o registro (inclui todas as propriedades mapeadas)
+            return _conn.UpdateAsync(p);
         }
         public Task<int> Delete(int id) 
         {
@@ -37,6 +34,14 @@ namespace MauiAppMinhasCompras.Helpers
             string sql = "SELECT * FROM Produto WHERE Descricao LIKE '%" + q +"%'";
 
             return _conn.QueryAsync<Produto>(sql);
+        }
+
+        public Task<List<RelatorioCategoria>> GetTotalPorCategoria()
+        {
+            // Agrupa por Categoria e soma Quantidade * Preco
+            string sql = "SELECT Categoria, SUM(Quantidade * Preco) as Total FROM Produto GROUP BY Categoria";
+
+            return _conn.QueryAsync<RelatorioCategoria>(sql);
         }
 
 

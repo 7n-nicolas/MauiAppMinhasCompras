@@ -5,6 +5,7 @@
              Title="Minhas Compras">
     
     <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Relatório" Clicked="ToolbarItem_Report_Clicked" />
         <ToolbarItem Text="Somar" Clicked="ToolbarItem_Clicked_1" />
         <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
@@ -19,6 +20,8 @@
 
         
     <StackLayout>
+        <Picker x:Name="picker_categoria" Title="Categoria" SelectedIndexChanged="picker_categoria_SelectedIndexChanged" />
+
         <SearchBar x:Name="txt_search"
                    Margin="-15, 0, 0, 0"
                    Placeholder="Buscar produto..."
@@ -29,14 +32,15 @@
                       IsPullToRefreshEnabled="True"
                       Refreshing="lst_produtos_Refreshing"
                       ItemSelected="lst_produtos_ItemSelected">
-                <ListView.Header>
-                    <Grid ColumnDefinitions="30, 100, 80, 50, 90"
+                    <ListView.Header>
+                    <Grid ColumnDefinitions="30, 100, 80, 80, 30, 100"
                           BackgroundColor="{StaticResource Gray100}">
                         <Label Grid.Column="0" Text="ID" Padding="5" FontAttributes="Bold" />
                         <Label Grid.Column="1" Text="Descrição" FontAttributes="Bold"/>
-                        <Label Grid.Column="2" Text="Preço" FontAttributes="Bold" />
-                        <Label Grid.Column="3" Text="Qnt" FontAttributes="Bold" />
-                        <Label Grid.Column="4" Text="Total" FontAttributes="Bold" />
+                        <Label Grid.Column="2" Text="Categoria" FontAttributes="Bold" />
+                        <Label Grid.Column="3" Text="Preço" FontAttributes="Bold" />
+                        <Label Grid.Column="4" Text="Qnt" FontAttributes="Bold" />
+                        <Label Grid.Column="5" Text="Total" FontAttributes="Bold" />
                     </Grid>
                 </ListView.Header>
                 <ListView.ItemTemplate>
@@ -45,12 +49,13 @@
                             <ViewCell.ContextActions>
                                 <MenuItem Text="Remover" Clicked="MenuItem_Clicked"/>
                             </ViewCell.ContextActions>
-                            <Grid ColumnDefinitions="30, 100, 80, 50, 90">
+                            <Grid ColumnDefinitions="30, 100, 80, 80, 30, 100">
                                 <Label Grid.Column="0" Text="{Binding Id}" Padding="5" />
                                 <Label Grid.Column="1" Text="{Binding Descricao}" />
-                                <Label Grid.Column="2" Text="{Binding Preco, StringFormat= '{}{0:c}'}" />
-                                <Label Grid.Column="3" Text="{Binding Quantidade}"/>
-                                <Label Grid.Column="4" Text="{Binding Total, StringFormat= '{}{0:c}'}" />
+                                <Label Grid.Column="2" Text="{Binding Categoria}" />
+                                <Label Grid.Column="3" Text="{Binding Preco, StringFormat= '{}{0:c}'}" />
+                                <Label Grid.Column="4" Text="{Binding Quantidade}"/>
+                                <Label Grid.Column="5" Text="{Binding Total, StringFormat= '{}{0:c}'}" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

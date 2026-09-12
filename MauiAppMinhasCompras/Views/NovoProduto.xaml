@@ -17,7 +17,11 @@
         <Entry x:Name="txt_quantidade" Placeholder="Digite a quantidade" Keyboard="Numeric" />
         
         <Label Text="Preço Unitário:" />
-        <Entry x:Name="txt_preco" Placeholder="Digite o preço unitário" Keyboard="Numeric" />
+        <!-- Usar Keyboard="Text" para permitir inserir vírgula ou ponto em todas as plataformas -->
+        <Entry x:Name="txt_preco" Placeholder="Digite o preço unitário" Keyboard="Text" TextChanged="txt_preco_TextChanged" />
+
+        <Label Text="Categoria:" />
+        <Picker x:Name="picker_categoria" />
         
     </VerticalStackLayout>
 </ContentPage>
